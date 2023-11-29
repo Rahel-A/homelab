@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: pod-to-pod-policy
+spec:
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            mqtt-bridge: mosquitto
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: smarthome
+    
+  egress:
+    - to:
+      - podSelector:
+          matchLabels:
+            mqtt-bridge: mosquitto
+        namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: smarthome
+    

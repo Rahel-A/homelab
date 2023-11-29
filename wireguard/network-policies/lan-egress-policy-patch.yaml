@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: lan-egress-policy
+  namespace: wireguard
+spec:
+  podSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: wireguard
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    - ipBlock:
+        # truenas sits on LAN
+        cidr: 10.139.21.199/32
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values: ["truenas"]
+    ports:
+      # jellyfin
+      - port: 8096
+        protocol: UDP
+      - port: 8096
+        protocol: TCP

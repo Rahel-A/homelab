@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    volume.storage-class-name: nfs-client
+  labels:
+    app.kubernetes.io/name: zigbee2mqtt
+  name: zigbee2mqtt
+  namespace: smarthome
+spec:
+  ports:
+    - name: "http"
+      port: 8456
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: zigbee2mqtt
+  type: LoadBalancer
+status:
+  loadBalancer: {}

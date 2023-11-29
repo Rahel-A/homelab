@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: handle-vpn-connections-policy
+  namespace: wireguard
+spec:
+  podSelector:
+    matchLabels:
+      app: wireguard
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    ports:
+    - port: 51820
+      protocol: UDP
+  egress:
+  - to:
+    - ipBlock:
+        # allow access to outside network but not cluster
+        cidr: 0.0.0.0/0
+        except:
+          - 10.139.0.0/16
+          - 172.16.0.0/16
+          - 192.168.0.0/16

@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alertmanager-admin-config
+  labels:
+    release: prometheus-stack
+spec:
+  route:
+    groupBy: ['job']
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 12h
+    receiver: admin
+  receivers:
+  - name: 'admin'
+    discordConfigs:
+    - apiURL:
+        name: discord-api
+        key: discord-api-url
+    emailConfigs:
+    - authPassword:
+        name: mailgun-auth
+        key: mailgun-auth-password
+      authUsername: "admin@mg.rahmed.work"
+      from: "admin@mg.rahmed.work"
+      to: "rahel@tuta.io"
+      smarthost: "smtp.eu.mailgun.org:465"

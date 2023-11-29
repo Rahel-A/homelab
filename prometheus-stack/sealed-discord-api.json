@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "discord-api",
+    "namespace": "default",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "discord-api",
+        "namespace": "default",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "discord-api-url": "AgA0B1WUgLOV4ZzLko2gqbdKSr0eNUfvrOTp0vN3VOx3kCCXiScweyqnWdV1pY8HDQ2I4e//3no56q3VYXhHebkn4CWofB21eWGiAmFsMMXvGn5/t/q6uC7TTbwJERp9fT6cnfEkf1oM2COSRrJKvDyIgFRWvn9WGSo6bBZNt+JFIRXwMkofEkP0zw9dVNrfvSTRUam3LZWoLw9fJ4ZQ098S38XRyLDWm7Sfdunv5XdRIBYNvdBm0R0wx5ZLUMSOeno8dwJl511zvN11EF/Lx87XviFlK2eM/P2TscEVhccnUi6b9njLGUK58YgABZuVtRE6esWTN5reBXdzcOLEumNyNe+DRsokzg1cAEI7dZnavO29dkw7BVaXS2o4p2cFYnXOUB6tGLc4WhGBD39N+H+lQpTyVraeXvM86oeS2n/JbtKgsBTQfVlw1LyMdUIuHVSKMO1zKPU08y1AiDVIjl2EVM2DWGQfneyUXTju3/iSVDgA7bnwhp5Xfs4gh+bYY3PWAU5q33tqi8YFt9riOyTkj+Ye10XsLvRiNmdjd1bSjJsl9jnT0GiAqNImz+ZSQGEZE/Gm3mbqoldQwB0fK6SomHzic+siIH7ITVcZ36XQhB8CzGt9JdaTcyT6GQ2NzyqcpIJ9NK+0UHZZLZQJSe8f/G+AiWYAznvv480rRQjIY/bItDRoXcLmDpWdRkz8YK1DZAGynzXUtJRpMkmbn7qgj3ygb6RrfH+GLzT4ciI/RAgP9NcFW+Jw4GlcEv5g8dT7MIZpAFhWYb3naK114dBBe29R2jWGELyvOHqZPha+JCvooMqTddQtgggObV3YOIz1RRzAvJ0CJJCE0Mw6rgsCUP+G/p62umyM"
+    }
+  }
+}

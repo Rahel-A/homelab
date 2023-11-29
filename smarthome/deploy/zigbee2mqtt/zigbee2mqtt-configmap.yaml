@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zigbee2mqtt-config
+  namespace: smarthome
+data:
+    mqtt-server: mqtt://mosquitto.smarthome.svc.cluster.local:1883
+  # configuration.yaml: |
+  #   permit_join: true
+  #   mqtt:
+  #     server: mqtt://mosquitto.smarthome.svc.cluster.local:1883
+  #   frontend: true

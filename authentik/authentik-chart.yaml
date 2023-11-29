@@ -1,0 +1,59 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: authentik
+spec:
+  repo: https://charts.goauthentik.io
+  chart: authentik
+  createNamespace: true
+  targetNamespace: sso
+  valuesContent: |-
+    authentik:
+
+      # This sends anonymous usage-data, stack traces on errors and
+      # performance data to sentry.io, and is fully opt-in
+      error_reporting:
+        enabled: true
+      secret_key: "env://AUTHENTIK_REDIS__PASSWORD"
+      postgresql:
+        password: "env://AUTHENTIK_POSTGRESQL__PASSWORD"
+
+    ingress:
+      # Specify kubernetes ingress controller class name
+      ingressClassName: traefik
+      enabled: true
+      hosts:
+        # Specify external host name
+        - host: sso.rahmed.work
+          paths:
+            - path: "/"
+              pathType: Prefix
+
+    postgresql:
+      enabled: true
+      existingSecret: authentik-postgresql-auth
+      secretKeys:
+        adminPasswordKey: postgresql-postgres-password
+        userPasswordKey: postgresql-password
+      persistence:
+        enabled: true
+        storageClass: nfs-client
+        accessModes:
+          - ReadWriteOnce
+
+    redis:
+      enabled: true
+      auth:
+        enabled: true
+        existingSecret: authentik-redis-auth
+        existingSecretPasswordKey: redis-password
+    prometheus:
+      serviceMonitor:
+        create: true
+        labels:
+          release: prometheus-stack
+    envFrom:
+      - secretRef:
+          name: authentik-auth
+      - secretRef:
+          name: authentik-email-auth

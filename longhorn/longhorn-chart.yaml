@@ -1,0 +1,18 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: longhorn
+spec:
+  repo: https://charts.longhorn.io
+  chart: longhorn
+  createNamespace: true
+  targetNamespace: longhorn-system
+  backOffLimit: 1
+  valuesContent: |-
+    service:
+      ui:
+        type: NodePort
+        nodePort: 30543
+    defaultSettings:
+      defaultDataPath: /k8s/longhorn/
+      backupTarget: "nfs://longhorn-truenas-nfs.default:/mnt/SSDs/external-applications/longhorn"

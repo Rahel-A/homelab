@@ -1,0 +1,27 @@
+version: '3'
+volumes:
+  config_nfs:
+    driver_opts:
+      type: nfs
+      o: addr=truenas.local,nfsvers=4.2
+      device: /mnt/SSDs/external-applications/home-assistant/config
+  backup_nfs:
+    driver_opts:
+      type: nfs
+      o: addr=truenas.local,nfsvers=4.2
+      device: /mnt/SSDs/external-applications/home-assistant/backup
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - config_nfs:/config
+      - backup_nfs:/config/backups
+    ports:
+      - "8123:8123"
+    labels:
+      kompose.service.expose: "homeassistant"
+      kompose.service.type: "loadbalancer"
+      kompose.volume.storage-class-name: nfs-client
+    restart: always
+    network_mode: host

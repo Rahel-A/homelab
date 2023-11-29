@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    volume.storage-class-name: nfs-client
+  labels:
+    app.kubernetes.io/name: mosquitto
+  name: mosquitto
+  namespace: smarthome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mosquitto
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        volume.storage-class-name: nfs-client
+      labels:
+        app.kubernetes.io/name: mosquitto
+        mqtt-bridge: mosquitto
+    spec:
+      securityContext:
+        runAsUser: 1883
+        runAsGroup: 1883
+        fsGroup: 1883
+      containers:
+        - image: eclipse-mosquitto:latest
+          name: mosquitto
+          ports:
+            - containerPort: 1883
+            - containerPort: 9001
+          resources: {}
+          volumeMounts:
+            - name: config-file
+              mountPath: /mosquitto/config
+              readOnly: false
+            - name: password-file
+              mountPath: /etc/mosquitto/password_file
+              subPath: password_file
+              readOnly: true
+            - name: data-nfs
+              mountPath: /mosquitto/data
+            - name: log-nfs
+              mountPath: /mosquitto/log
+      restartPolicy: Always
+      volumes:
+        - name: config-file
+          configMap:
+            name: mosquitto-config
+            items:
+              - key: mosquitto.conf
+                path: mosquitto.conf
+        - name: password-file
+          secret:
+            secretName: mosquitto
+            items:
+              - key: password-file
+                path: password_file
+            defaultMode: 0700
+        - name: data-nfs
+          persistentVolumeClaim:
+            claimName: mosquitto-data-nfs
+        - name: log-nfs
+          persistentVolumeClaim:
+            claimName: mosquitto-log-nfs
+status: {}

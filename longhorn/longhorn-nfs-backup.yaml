@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: longhorn-truenas-nfs
+  namespace: default
+  labels:
+    app: longhorn-truenas-nfs
+spec:
+  selector:
+    matchLabels:
+      app: longhorn-truenas-nfs
+  template:
+    metadata:
+      labels:
+        app: longhorn-truenas-nfs
+    spec:
+      volumes:
+      - name: nfs-volume
+        emptyDir: {}
+      containers:
+      - name: longhorn-truenas-nfs-container
+        image: longhornio/nfs-ganesha:latest
+        imagePullPolicy: Always
+        env:
+        - name: EXPORT_ID
+          value: "14"
+        - name: EXPORT_PATH
+          value: /mnt/SSDs/external-applications/longhorn
+        - name: PSEUDO_PATH
+          value: /mnt/SSDs/external-applications/longhorn
+        - name: NFS_DISK_IMAGE_SIZE_MB
+          value: "4096"
+        command: ["bash", "-c", "chmod 700 /mnt/SSDs/external-applications/longhorn && /opt/start_nfs.sh | tee /var/log/ganesha.log"]
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["SYS_ADMIN", "DAC_READ_SEARCH"]
+        volumeMounts:
+        - name: nfs-volume
+          mountPath: "/mnt/SSDs/external-applications/longhorn"
+        livenessProbe:
+          exec:
+            command: ["bash", "-c", "grep \"No export entries found\" /var/log/ganesha.log > /dev/null 2>&1 ; [ $? -ne 0 ]"]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 4
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: longhorn-truenas-nfs-svc
+  namespace: default
+spec:
+  selector:
+    app: longhorn-truenas-nfs
+  clusterIP: None
+  ports:
+  - name: notnecessary
+    port: 1234
+    targetPort: 1234

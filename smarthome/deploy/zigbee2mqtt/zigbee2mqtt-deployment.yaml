@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    volume.storage-class-name: nfs-client
+  labels:
+    app.kubernetes.io/name: zigbee2mqtt
+  name: zigbee2mqtt
+  namespace: smarthome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zigbee2mqtt
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        volume.storage-class-name: nfs-client
+      labels:
+        app.kubernetes.io/name: zigbee2mqtt
+        mqtt-bridge: mosquitto
+    spec:
+      initContainers:
+      - name: init-wait-for-mqtt-broker
+        image: alpine
+        command: ['sh', '-c', "until nslookup mosquitto.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mosquitto; sleep 2; done"]
+      containers:
+        - image: koenkk/zigbee2mqtt:latest
+          name: zigbee2mqtt
+          ports:
+            - containerPort: 8080
+          resources: {}
+          env:
+            - name: ZIGBEE2MQTT_CONFIG_MQTT_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: zigbee2mqtt-config
+                  key: mqtt-server
+            - name: ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: zigbee
+                  key: mqtt-password
+            - name: ZIGBEE2MQTT_CONFIG_MQTT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: zigbee
+                  key: mqtt-user
+          volumeMounts:
+            - mountPath: /app/data
+              name: data-nfs
+            - mountPath: /dev/ttyACM0
+              name: usb-dev
+          securityContext:
+            privileged: true
+      # TODO: shift to user mode!
+      securityContext:
+        # runAsGroup: 100
+        # runAsUser: 1337
+        # supplementalGroups: [27]
+      restartPolicy: Always
+      volumes:
+        - name: data-nfs
+          persistentVolumeClaim:
+            claimName: zigbee2mqtt-data-nfs
+        - name: usb-dev
+          hostPath:
+            path: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_d259c8c80360ec11bcd4345f25bfaa52-if00-port0
+
+status: {}

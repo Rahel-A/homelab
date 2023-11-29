@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "mailgun-auth",
+    "namespace": "default",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "mailgun-auth",
+        "namespace": "default",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "mailgun-auth-password": "AgBfMrQm/ysBZNkh8jODnD59+33soajdMFNjLLG897Gp3eNQQSc47hEGRTrDsuQ8Mh8vOYNqqEXiwvuHpdZmOqrUgSooIoOzmMeLUvOM4B3HKtvbwSLsH5pg+krAmxR1uJ4xJivEUdy1T9J4crU/YOzMhQaNfnXxM5e6HvIjcp8Yav0q0D4t8YvFTcIlY/FuVfmF3mDyh1LtSLUaquzcgjg+nZzWdief634CWlXN/6DizDHsjHYSvxmII9KIyI3CvOMdm2TfzRa7A++NNhwW1vMIoN7ZzE9WajFlyNqtsn0quZuleRsKQXJ6+YIH10Z98rcVMzwZzji6Hv8tdPYorMfqONl8pV3yKyKRBVwT1GmoOzedgdVvbgPMau3xx7OoXI64pGxgamaFhn1nm6BmAovV1z8+QWdVLS61PDeXGmSfC/ljwwGx2nBjk3XpkEPFpAr50JRizNDpfIlDNgk7o92D46iH3nJlKpwsBFIAeV9EbFDWtYuoE9BWXqd4QjgShBr9DbazFmczfS1fCfZEh4i+bTBFxBNEPRd+bkl6kO9jsxV4YL0l9hDkxUF7Va3xmoQaocscJJ4BjX0V/qNEGG/HsuNUvOSdC3u/hKyZtqYjPLtvonbuzUyHKHBXSutqHFfuwCCfyWle8X4sd0mymxU6bLwPman8LtTS31GH/4fOzx1u5+zXLz/4hnK/Dm1Uo3kKbsOyafDpWT9hM3zRI2DIDWgFSezHepxqmsyASoKtVUdnafZqGl9Jam2/TMfhxDBDQg=="
+    }
+  }
+}

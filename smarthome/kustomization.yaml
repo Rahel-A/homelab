@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- smarthome-namespace.yaml
+- ../base/network-policies/deny-ingress-policy
+- ../base/network-policies/world-egress-policy
+- ../base/network-policies/lan-ingress-policy
+- ../base/network-policies/lan-egress-policy
+- ../base/network-policies/dns-egress-policy
+- ../base/network-policies/vpn-ingress-policy
+- ../base/network-policies/metrics-ingress-policy
+- pod-to-pod-policy-patch.yaml
+- deploy/homeassistant
+- deploy/mosquitto
+- deploy/zigbee2mqtt
+
+patches:
+  # add namespace to all policies
+- patch: |-
+    - op: add
+      path: /metadata/namespace
+      value: smarthome
+  target:
+    kind: NetworkPolicy
+- path: lan-egress-policy-patch.yaml
+- path: world-egress-policy-patch.yaml

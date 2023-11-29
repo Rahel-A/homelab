@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    volume.storage-class-name: nfs-client
+  labels:
+    app.kubernetes.io/name: homeassistant
+  name: homeassistant
+  namespace: smarthome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: homeassistant
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        volume.storage-class-name: nfs-client
+      labels:
+        app.kubernetes.io/name: homeassistant
+        mqtt-bridge: mosquitto
+    spec:
+      containers:
+        - image: ghcr.io/home-assistant/home-assistant:stable
+          name: homeassistant
+          ports:
+            - containerPort: 8123
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: config-nfs
+            - mountPath: /config/backups
+              subPath: backups
+              name: backup-nfs
+      restartPolicy: Always
+      volumes:
+        - name: config-nfs
+          persistentVolumeClaim:
+            claimName: config-nfs
+        - name: backup-nfs
+          persistentVolumeClaim:
+            claimName: backup-nfs
+status: {}

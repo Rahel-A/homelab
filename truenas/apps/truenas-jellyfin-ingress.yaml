@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: media-jellyfin-traefik
+  namespace: truenas
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: "media.rahmed.work"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: media-jellyfin
+            port:
+              number: 8096
+

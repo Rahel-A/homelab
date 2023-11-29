@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- wireguard-namespace.yaml
+- ../base/network-policies/deny-all-policy
+- ../base/network-policies/dns-egress-policy
+- ../base/network-policies/lan-egress-policy
+- network-policies/handle-vpn-connections-policy.yaml
+- network-policies/cluster-egress-policy.yaml
+- deploy
+
+patches:
+- patch: |-
+    - op: add
+      path: /metadata/namespace
+      value: wireguard
+  target:
+    kind: NetworkPolicy
+- path: network-policies/lan-egress-policy-patch.yaml

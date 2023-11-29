@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "homeassistant-auth",
+    "namespace": "smarthome",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "homeassistant-auth",
+        "namespace": "smarthome",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "homeassistant-auth-token": "AgBnTpvsUgkIVn4UkzRloBiO5LiNpE9BAjNotu2vxHvSnNGVhJv7gB63rDE+jUGfCZG1Pnlipb7E5Xt7zP5QQ2Bo0puagDQI2iF+lu2Xp/OwMso1EThmZnUaTjLqyTtCuvRoIP0PZvbiDrAx8R9bzuox3BLJVWJO9ACA5vQ0drxamDyTelfLRLPOQKyOC+91q0+WXGfP3dxwnmNXxO3nzN0eTgsYQsWhOjJRsahZDZLC+1+/YNO4MgDYity93Lu8dyagWkOAh7WDiVv3TzePMI7VniSxEaDXJFYL//dQqLd9evXkBr8v5cxuRdKXzOukHn4i5+EAJ5e4lX7cqpDdu2Zgm+M5geKRXYrygIko4LIZXcq06Rhp3kJujasu7F2aBZK4xybBIBAJQqbKReDdz3yxORymFVIpxRVAt2E9hVeMXqAhOungJR2DC4YTicSINz67rG+XWNrVqEXioZs7h21D4SugrxFRxefa1rNaV2qrh7YxsoOjqOPt8ToFzoiP3LRsDQCDO3GBr1I8Ofxx9cNgA6DvDMqQDi+f1gEPRDMD5nfysESc1XC3MObjNs3WqQFWto6jHrL9zAlrVb+KDGV7EQSoCpy/zvwQ8OvSl2c6+CG5sH/4JDZXhsrR9H5BHK47IHaPxj/n5owRr/Fw64VpWsUhBzpgHlV44lNE3gyurp4R0Wr+3G6a4OwvItVfcFb5S5FU0W/gapHdMpgYJURvptgXz+4fckUhwi9I3Ml0vVB/X9c0Nwm+M2zZKnEJVst3vzXzJ8DpfqEyI4SdpEQ9R4LMuQNb7vkwcm5mwGf1AAj5koVcP5Ox0LkS1vzkNMANZ235DWDZVAaI8XjRYJGhMr09xU5L0Iv3L3151envpRNXbsy+lZYSwtS0ZU7YrUlnskEXcByDt19qSbd5eMDCS1NR9CmJZtMZS7rHxPk5guM7G9GxHDc="
+    }
+  }
+}

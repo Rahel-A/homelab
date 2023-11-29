@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- wireguard-configmap.yaml
+- wireguard-config-nfs-persistentvolumeclaim.yaml
+- wireguard-service.yaml
+- wireguard-pod.yaml

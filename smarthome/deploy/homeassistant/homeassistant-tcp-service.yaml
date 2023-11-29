@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    volume.storage-class-name: nfs-client
+  labels:
+    app.kubernetes.io/name: homeassistant
+  name: homeassistant-tcp
+  namespace: smarthome
+spec:
+  ports:
+    - name: "http"
+      port: 8123
+      targetPort: 8123
+  selector:
+    app.kubernetes.io/name: homeassistant
+  type: LoadBalancer
+status:
+  loadBalancer: {}

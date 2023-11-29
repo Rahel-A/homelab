@@ -1,0 +1,21 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "authentik-redis-auth",
+    "namespace": "sso",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "authentik-redis-auth",
+        "namespace": "sso",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "redis-password": "AgBh91Eeo2cZQOhc+lsYs7qFbixl3WdT8cVI8cnxjmdcA06A2Df6l+Dvui8I2EQmqd/XVC7HMWEEIxaWVhnFIhPuCxHlI7F5cqkY5BiiQ4XV4vUkpgrNPOymv3vRPjz8KSYi2NGc5ce10/la9aE3+/2cnZKDmGlSjZR+K78E+VMni2FLgwlQta9iqkt09+d+lkT8rUmu9cQf2VtIi/gQdHDWqX2H6qX1/Nm3lJY8KEu5nHRN/jYJReEE1rjTJjXbuvT9GZoC6cXGCl+nB76wHZnLzb8SKWUKZy9JXuTHcV95+FMsPpk477V7kZZ34J42b7h3h3B3QI5LDg3yO0MCXIstjZGiuuTLlDqiWKguj21JzZ4jcG2Yw0hfc6i0aBzLzfIvLy8xJj3XfH84x7gWYpbBByC9m5EtVmeuKWJhnjdZ0cFT9D+kdORTMJVgPczMTcnjPwnUKKwqVGoo2vu3pBOh9ZS7Gy4hcHUZoySEn3dT8wpsgOgsaLNMx5gijcjQVus4SJzebKlCuoL1bddj6rS03zabRZ3q+oglGBTDEIurWRkeEsgriLvY14Ph316mMiUVFhsRGKewFC8S2UQodGQwOUDURINxbeLJV8VuJowa+iclHMnqUT845Q0k70kGd6kRpGubEPrerD6Op/QT186hwxavnoy03yiZpKDcgenQ/bzFw3KHsPaqh+JGosMfp8EAtT3c6cddYRr8qPTFJ2QuINAPuMnVPhT+teEo/vAL4IbvSE8i6KHX9aBd45Gpj8tY8w=="
+    }
+  }
+}

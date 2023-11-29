@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- backup-nfs-persistentvolumeclaim.yaml
+- config-nfs-persistentvolumeclaim.yaml
+- homeassistant-deployment.yaml
+- homeassistant-tcp-service.yaml
+# generate an auth token in homeassistant and update this:
+- sealed-homeassistant-auth.json
+- homeassistant-service-monitor.yaml

@@ -1,0 +1,22 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "authentik-postgresql-auth",
+    "namespace": "sso",
+    "creationTimestamp": null
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "authentik-postgresql-auth",
+        "namespace": "sso",
+        "creationTimestamp": null
+      }
+    },
+    "encryptedData": {
+      "postgresql-password": "AgC3sv1xkLaUlkXz0Me4M+mQIIatEKxyrgyGcgCxiyJc2dtjfoAKe+q0tPbgE/Z3t/+lCVz8fVkGdiFVlgK+kHRpk0O8xw+R94FTULU+PsGS5Vnu1t1VX2yQHhRks6wObEzhBTUiZEiFFoVKCkUMhbUwQ1sB9U+8N/fIe2vgzMy15bav2MZ1F0Y08huPAYLMaoMs/a0AhszVqj2Q5xb/A2ptMs5oD2ZkIG2h/EqWeijsrWonQTL9N0IW0JBOArOlos03Jb9MHjg9rus5Wzo0Po2z9DJKat0rCDrHXO2gtugQl/c3Ox1rnRzINkgjXIaGT514a1rveNZq2zwEctw7eCh8zvDDUF0o8mBaXkCAxGQuVh8mnBIlT2kXCpEEELwg9rTZmsvAw2ZUu6ZbSpxBVjYNnqdHmGnK3kcRPKZu0o8/nMaEhvwuf+TO5rWlStRuw/IPrtUdtJxFE3iCgMSpGaXJ8X/rt/Xg4XSJxZUrNul+DErGhxnflifBcZPCBxy6BZf7NfJ20buE+U7hNO/25KUstqK3DrSOJP1F+oipPQcsB0B5phMeE1dEottJGxMtzIfQVuk409TWfyhfIPMGaDQVTtutVrrB7tA6j+wzYMz4At99kTJuHT15ppTHRklCVm6uiwM0q/3ql8Pt9H1g1jul+7CUaJQf02t4bOJbJ4fBOVWi3oTXOTA1TTByKToyqkfp0H11y4WZ30LR6Ct3pANC+VqDL7hYm1kQzxwKZ9nBOcgZ11uEyF25Jqecfh5Mk8s=",
+      "postgresql-postgres-password": "AgB4otCI3XZoliSdkokzPRzB/uKsNk57dX86Lg8RGJLyxXxmRknbNv8+TvvWUhZMTpfiZzhgAIa4AK6oW90rUG94mOAt+rGLtOkLl5NIjPK9QMlz7UwY2QjqlKrNH0UHxmc1jutz0R18J0NvABXxulNyrmIV90oY9y+uC//ifNEMAcL0qo9g40LkCcxk8VM2F+/NPEyTpTW5nOhaTDpvxnDr10/gMQ3wAUTSlxs/M/8ze/eBKR9BkUtj9InLGd6bbjGyU3FZ4t6f4pVAQ9degVSMwY3oEOvwAFcZH1u4n3ZV5H7qvSuhTuTZE3LhtSDKOcCDIJq2F8WHXsQ+oakBkJoqqXAaXEHCP6ch9rWGwNY3NH8i4SuI78ZfpPhz9x3Wr6vfwjVH1w8IP+32zHs5ZFL+s1+FoWQlS0fkVKOfHw1PV4o0/zTG3HwCnVbvO4zyUV0mRe8UC0JSyx5GmH1VEbGC6awvYO/J/X9+yA2Ym0CnOExq5XJZhMfiieL0spUkmWKO1BtkSeYFd8gmCYS+FSYJRW2MMnFV66IIhP3dDvXnPbip1WnidjjtdnYUfXUTQDLXnxRTUuA9ILEKrAjyG18sAbH7hTtm2njU5prmQmm+K10NyK7Xe4DXXKizQ4Xb9AOqL++/jr7MesdVHFhxoqfpWYpZZuu50vomOBW+K//hGQNGg4kQSIcbgzwnq6ZQnIo2J97ZijSfP0J+QB0oyAOhaTCG/tAvu4Gmu6Y+ngIglvkhgkO9D8EBtLoqSxbmaII3MA=="
+    }
+  }
+}
