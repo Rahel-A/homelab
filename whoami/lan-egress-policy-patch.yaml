@@ -1,0 +1,9 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: lan-egress-policy
+spec:
+  podSelector:
+    matchLabels:
+      io.kompose.service: homeassistant
+      # allow homeassistant pod access to lan devices

@@ -1,0 +1,55 @@
+# ingress created as a test. Must not allow access!
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami
+  namespace: whoami-ns
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: crm.rahmed.work
+    http:
+      paths:
+      - backend:
+          service:
+            name: whoami
+            port:
+              number: 80
+        path: /
+        pathType: Exact
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami
+  namespace: whoami-ns
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: whoami
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami
+  namespace: whoami-ns
+spec:
+  selector:
+    matchLabels:
+      app: whoami
+  template:
+    metadata:
+      labels:
+        app: whoami
+    spec:
+      containers:
+      - image: traefik/whoami
+        name: whoami
+      restartPolicy: Always
