@@ -1,0 +1,53 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: argo
+spec:
+  repo: https://argoproj.github.io/argo-helm
+  chart: argo-cd
+  createNamespace: true
+  targetNamespace: argocd
+  valuesContent: |-
+    controller:
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+
+    dex:
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+    redis:
+        serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+    server:
+      service:
+        type: NodePort
+        nodePortHttp: 30111
+        nodePortHttps: 30112
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+    repoServer:
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+
+    applicationSet:
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+
+    notifications:
+      serviceMonitor:
+        enabled: true
+        additionalLabels:
+          release: prometheus-stack
+
