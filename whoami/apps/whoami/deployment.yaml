@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: whoami
   namespace: whoami-ns
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: traefik
   rules:
@@ -17,6 +19,10 @@ spec:
               number: 80
         path: /
         pathType: Exact
+  tls:
+    - hosts:
+      - crm.rahmed.work
+      secretName: crm.rahmed.work-cert
 ---
 apiVersion: v1
 kind: Service
