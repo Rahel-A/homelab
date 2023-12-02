@@ -8,6 +8,9 @@ spec:
   createNamespace: true
   targetNamespace: argocd
   valuesContent: |-
+    configs:
+      params:
+        server.insecure: true
     controller:
       serviceMonitor:
         enabled: true
@@ -25,10 +28,14 @@ spec:
         additionalLabels:
           release: prometheus-stack
     server:
-      service:
-        type: NodePort
-        nodePortHttp: 30111
-        nodePortHttps: 30112
+      certificate:
+        enabled: true
+        domain: cd.rahmed.work
+        issuer:
+          kind: ClusterIssuer
+          name: letsencrypt-prod
+      metrics:
+        enabled: true
       serviceMonitor:
         enabled: true
         additionalLabels:

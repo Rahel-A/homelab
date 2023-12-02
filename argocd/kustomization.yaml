@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
 - argo-helmchart.yaml
+- argo-ingressroute.yaml
 # - sealed-github-api.json
