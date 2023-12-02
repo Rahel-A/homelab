@@ -2,12 +2,9 @@ apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
   name: prometheus-stack
-  # TODO -- move to default ns
-  namespace: monitoring
 spec:
   repo: https://prometheus-community.github.io/helm-charts
   chart: kube-prometheus-stack
-  createNamespace: true
   targetNamespace: monitoring
   valuesContent: |-
     alertmanager:
