@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: media-jellyfin-traefik
   namespace: truenas
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: traefik
   rules:
@@ -16,4 +18,8 @@ spec:
             name: media-jellyfin
             port:
               number: 8096
+  tls:
+    - hosts:
+      - media.rahmed.work
+      secretName: media.rahmed.work-cert
 

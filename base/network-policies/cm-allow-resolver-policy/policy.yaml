@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-cert-manager-resolver
+spec:
+  podSelector:
+    matchLabels:
+      # acme.cert-manager.io/http01-solver: "true"
+      # cert-manager.io/cluster-issuer: letsencrypt-prod
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          app.kubernetes.io/instance: cert-manager
+
