@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
 - traefik-config.yaml
-- traefik-ingress.yaml
