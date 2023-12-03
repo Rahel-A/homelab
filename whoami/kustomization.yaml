@@ -5,6 +5,7 @@ resources:
 - ../base/network-policies/deny-all-policy
 - ../base/network-policies/vpn-ingress-policy
 - ../base/network-policies/lan-ingress-policy
+- ../base/network-policies/traefik-ingress-policy
 - ../base/network-policies/cm-allow-resolver-policy
 - apps/whoami
 
