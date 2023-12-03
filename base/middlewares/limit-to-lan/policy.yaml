@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: limit-to-lan
+spec:
+  ipWhiteList:
+    sourceRange:
+      - 10.139.21.169/32
+      - 10.139.21.0/24
+

@@ -5,8 +5,9 @@ resources:
 - ../base/network-policies/deny-all-policy
 - ../base/network-policies/vpn-ingress-policy
 - ../base/network-policies/lan-ingress-policy
-- ../base/network-policies/traefik-ingress-policy
 - ../base/network-policies/cm-allow-resolver-policy
+- ../base/network-policies/traefik-ingress-policy
+- ../base/middlewares/limit-to-lan
 - apps/whoami
 
 patches:
@@ -17,3 +18,9 @@ patches:
       value: whoami-ns
   target:
     kind: NetworkPolicy
+- patch: |-
+    - op: add
+      path: /metadata/namespace
+      value: whoami-ns
+  target:
+    kind: Middleware
