@@ -1,0 +1,17 @@
+# not needed with host network?
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: gvm2mqtt
+#   namespace: smarthome
+# spec:
+#   ports:
+#     # delete when swapped to mqtt
+#     - name: "custom-proto"
+#       port: 8631
+#       targetPort: 8631
+#   selector:
+#     app.kubernetes.io/name: gvm2mqtt
+#   type: LoadBalancer
+# status:
+#   loadBalancer: {}

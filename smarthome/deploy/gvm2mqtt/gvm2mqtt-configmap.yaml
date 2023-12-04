@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gvm2mqtt-config
+  namespace: smarthome
+data:
+  mqtt-server: mosquitto.smarthome.svc.cluster.local
+  # app-clients: "A4:C1:38:8D:61:45,A4:C1:38:EE:86:C1"

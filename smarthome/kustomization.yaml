@@ -14,6 +14,7 @@ resources:
 - deploy/homeassistant
 - deploy/mosquitto
 - deploy/zigbee2mqtt
+- deploy/gvm2mqtt
 
 patches:
   # add namespace to all policies

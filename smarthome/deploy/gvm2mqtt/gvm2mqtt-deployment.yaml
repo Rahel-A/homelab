@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gvm2mqtt
+  namespace: smarthome
+  labels:
+    app.kubernetes.io/name: gvm2mqtt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gvm2mqtt
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gvm2mqtt
+        mqtt-bridge: mosquitto
+    spec:
+      initContainers:
+      - name: init-wait-for-mqtt-broker
+        image: alpine
+        command: ['sh', '-c', "until nslookup mosquitto.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mosquitto; sleep 2; done"]
+      containers:
+        - image: rahela/gvm_lights:latest_arm
+          imagePullPolicy: "Always"
+          name: gvm2mqtt
+          resources: {}
+          env:
+            - name: RUST_LOG
+              value: "gvm_server=info,gvm_server_bench=trace"
+            # - name: APP_CLIENTS
+            #   valueFrom:
+            #     configMapKeyRef:
+            #       name: gvm2mqtt-config
+            #       key: app-clients
+            - name: MQTT_NODE_ID
+              value: "office"
+            - name: APP_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gvm2mqtt-config
+                  key: mqtt-server
+            - name: MQTT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gvm2mqtt-auth
+                  key: mqtt-password
+            - name: MQTT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: gvm2mqtt-auth
+                  key: mqtt-user
+          volumeMounts:
+            - mountPath: /run/dbus
+              name: dbus
+              readOnly: true
+          securityContext:
+            privileged: true
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      # TODO: shift to user mode!
+      securityContext:
+        # runAsGroup: 100
+        # runAsUser: 1337
+        # supplementalGroups: [27]
+      restartPolicy: Always
+      volumes:
+        - name: dbus
+          hostPath:
+            path: /run/dbus
+
+status: {}
