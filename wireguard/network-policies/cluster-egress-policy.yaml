@@ -6,7 +6,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      kubernetes.io/metadata.name: wireguard
+      app.kubernetes.io/name: wireguard
   policyTypes:
   - Egress
   egress:

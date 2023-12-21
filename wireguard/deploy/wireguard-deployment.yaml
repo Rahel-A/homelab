@@ -6,7 +6,7 @@ metadata:
   name: wireguard
   namespace: wireguard
   labels:
-    app: wireguard
+    app.kubernetes.io/name: wireguard
 spec:
   replicas: 1
   selector:
