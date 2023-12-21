@@ -8,4 +8,4 @@ resources:
 - homeassistant-tcp-service.yaml
 # generate an auth token in homeassistant and update this:
 - sealed-homeassistant-auth.json
-- homeassistant-service-monitor.yaml
+# - homeassistant-service-monitor.yaml
