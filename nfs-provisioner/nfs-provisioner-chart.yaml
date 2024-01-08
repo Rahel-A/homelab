@@ -1,0 +1,17 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nfs-provisioner
+spec:
+  repo: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+  chart: nfs-subdir-external-provisioner
+  createNamespace: true
+  targetNamespace: nfs-provisioner
+  valuesContent: |-
+    nfs:
+      server: 10.139.21.199
+      path: /mnt/SSDs/external-applications
+      mountOptions:
+        - "nfsvers=4"
+      reclaimPolicy: "Retain"
+

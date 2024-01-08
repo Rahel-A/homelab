@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    app: nfs-client-provisioner
+    nfs-subdir-external-provisioner: nfs-subdir-external-provisioner
+  name: pv-nfs-client-root
+spec:
+  capacity:
+    storage: 10Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - "nfsvers=4.2"
+  nfs:
+    server: 10.139.21.199
+    path: /mnt/SSDs/external-applications
+
+

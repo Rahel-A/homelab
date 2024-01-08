@@ -4,6 +4,18 @@ kind: Kustomization
 resources:
 - nfs-provisioner-namespace.yaml
 - github.com/kubernetes-sigs/nfs-subdir-external-provisioner//deploy
+- truenas-nfs-pv-patch.yaml
+- truenas-nfs-pvc-patch.yaml
 patches:
 - path: truenas-nfs-storage-class-patch.yaml
 - path: truenas-nfs-deployment-patch.yaml
+- target:
+    kind: Deployment
+    name: nfs-client-provisioner
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/volumes
+      value:
+      - name: nfs-client-root
+        persistentVolumeClaim:
+          claimName: pvc-nfs-client-root

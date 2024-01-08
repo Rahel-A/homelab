@@ -14,8 +14,6 @@ spec:
               value: 10.139.21.199
             - name: NFS_PATH
               value: /mnt/SSDs/external-applications
-      volumes:
-        - name: nfs-client-root
-          nfs:
-            server: 10.139.21.199
-            path: /mnt/SSDs/external-applications
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
